@@ -1,0 +1,9 @@
+{
+  "title": "Login as administrator",
+  "username": "Username",
+  "password": "Password",
+  "loginButton": "Login",
+  "errors": {
+    "WRONG_CREDENTIALS": "Username or password are incorrect"
+  }
+}
