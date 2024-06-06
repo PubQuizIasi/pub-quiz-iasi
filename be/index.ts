@@ -12,13 +12,13 @@ import {
   protectedGameResultsRouter,
   unprotectedGameResultsRouter,
 } from './routes/gameResultsRoutes';
+import { getCorsOrigin } from './utils/getCorsOrigin';
 
 dotenv.config();
 
-const whitelist = ['http://localhost:3000, https://pub-quiz-iasi.vercel.app'];
 const corsOptions = {
   credentials: true,
-  origin: 'https://pub-quiz-iasi.vercel.app',
+  origin: getCorsOrigin(),
 };
 
 const app = express();
