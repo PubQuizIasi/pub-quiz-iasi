@@ -15,10 +15,10 @@ import {
 
 dotenv.config();
 
-const whitelist = ['http://localhost:3000, https://pub-quiz-iasi-gules.vercel.app'];
+const whitelist = ['http://localhost:3000, https://pub-quiz-iasi.vercel.app'];
 const corsOptions = {
   credentials: true,
-  origin: 'https://pub-quiz-iasi-gules.vercel.app',
+  origin: 'https://pub-quiz-iasi.vercel.app',
 };
 
 const app = express();

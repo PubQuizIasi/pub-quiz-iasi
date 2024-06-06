@@ -1,5 +1,7 @@
-// const baseUri = 'http://localhost:8000';
-const baseUri = 'https://pub-quiz-iasi-backend.vercel.app';
+const baseUri =
+  process.env.IS_LOCAL_DEVELOPMENT === 'true'
+    ? 'http://localhost:8000'
+    : 'https://pub-quiz-iasi-backend-alpha.vercel.app';
 
 const endpoints = {
   gameResults: baseUri + '/game-results',
