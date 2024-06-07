@@ -9,8 +9,8 @@ import ThemeSelector from '../ThemeSelector';
 import MobileNavbar from './MobileNavbar';
 import React, { useEffect, useRef, useState } from 'react';
 import { logo } from '../../assets';
-import { useIsLandingPage } from '../../hooks';
 import clsx from 'clsx';
+import { useGetCurrentPage } from '../../hooks';
 
 const useStyles = makeStyles()((theme: Theme) => ({
   header: {
@@ -91,6 +91,10 @@ const useStyles = makeStyles()((theme: Theme) => ({
       textUnderlineOffset: '4px',
     },
   },
+  currentPage: {
+    textDecoration: 'underline',
+    textUnderlineOffset: '4px',
+  },
   userActions: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -102,7 +106,8 @@ const useStyles = makeStyles()((theme: Theme) => ({
 
 const Navbar = () => {
   const { t } = useTranslation('home', { keyPrefix: 'navbar' });
-  const isLandingPage = useIsLandingPage();
+  const { isLandingPage, isTeamRegistration, isGameResults, isCorporateGames, isFaq, isContact } =
+    useGetCurrentPage();
   const { classes } = useStyles();
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down(1100));
   const ref = useRef<null | HTMLElement>(null);
@@ -144,24 +149,37 @@ const Navbar = () => {
         </Link>
         <nav className={classes.navbar}>
           <Link to={paths.root}>
-            <Button className={classes.button} variant="text">
+            <Button
+              variant="text"
+              className={clsx({ [classes.currentPage]: isLandingPage }, classes.button)}
+            >
               {t('about')}
             </Button>
           </Link>
           <Link to={paths.teamRegistration} target="_blank">
-            <Button className={classes.button}>{t('teamRegistration')}</Button>
+            <Button className={clsx({ [classes.currentPage]: isTeamRegistration }, classes.button)}>
+              {t('teamRegistration')}
+            </Button>
           </Link>
           <Link to={paths.gameResults}>
-            <Button className={classes.button}>{t('gameResults')}</Button>
+            <Button className={clsx({ [classes.currentPage]: isGameResults }, classes.button)}>
+              {t('gameResults')}
+            </Button>
           </Link>
           <Link to={paths.corporateGames}>
-            <Button className={classes.button}>{t('corporateGames')}</Button>
+            <Button className={clsx({ [classes.currentPage]: isCorporateGames }, classes.button)}>
+              {t('corporateGames')}
+            </Button>
           </Link>
           <Link to={paths.faq}>
-            <Button className={classes.button}>{t('faq')}</Button>
+            <Button className={clsx({ [classes.currentPage]: isFaq }, classes.button)}>
+              {t('faq')}
+            </Button>
           </Link>
           <Link to={paths.contact}>
-            <Button className={classes.button}>{t('contact')}</Button>
+            <Button className={clsx({ [classes.currentPage]: isContact }, classes.button)}>
+              {t('contact')}
+            </Button>
           </Link>
         </nav>
         <div className={classes.userActions}>

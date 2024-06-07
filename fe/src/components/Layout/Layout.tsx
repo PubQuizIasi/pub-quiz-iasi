@@ -5,7 +5,7 @@ import ProtectedPath from './ProtectedPath';
 import Footer from '../Footer';
 import { makeStyles } from 'tss-react/mui';
 import { Theme } from '@mui/material';
-import { useIsLandingPage } from '../../hooks';
+import { useGetCurrentPage } from '../../hooks';
 import clsx from 'clsx';
 
 const useStyles = makeStyles()((theme: Theme) => ({
@@ -29,7 +29,7 @@ const useStyles = makeStyles()((theme: Theme) => ({
 
 const Layout = () => {
   const { classes } = useStyles();
-  const isLandingPage = useIsLandingPage();
+  const { isLandingPage } = useGetCurrentPage();
 
   return (
     <div className={classes.body}>

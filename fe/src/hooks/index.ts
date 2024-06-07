@@ -1,1 +1,1 @@
-export { default as useIsLandingPage } from './useIsLandingPage';
+export { useGetCurrentPage } from './useGetCurrentPage';
