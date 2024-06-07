@@ -12,6 +12,9 @@ const useStyles = makeStyles()((theme: Theme) => ({
     gap: '20px',
     [theme.breakpoints.down(1100)]: {
       margin: '100px 30px',
+      flexDirection: 'column',
+      gap: '100px',
+      alignItems: 'center',
     },
   },
 }));
@@ -21,7 +24,6 @@ export const Contact = () => {
   return (
     <div className={classes.container}>
       <ContactData />
-
       <ContactForm />
     </div>
   );

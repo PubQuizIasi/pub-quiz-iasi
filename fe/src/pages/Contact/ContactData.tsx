@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import EmailIcon from '@mui/icons-material/Email';
@@ -38,9 +38,9 @@ const ContactData = () => {
         <div className={classes.alignContact} key={translationKey}>
           <Icon />
           {link ? (
-            <a href={link} target="_blank" rel="noreferrer">
+            <Link href={link} target="_blank" underline="none" rel="noopener noreferrer">
               <Typography>{t(translationKey)}</Typography>
-            </a>
+            </Link>
           ) : (
             <Typography>{t(translationKey)}</Typography>
           )}
