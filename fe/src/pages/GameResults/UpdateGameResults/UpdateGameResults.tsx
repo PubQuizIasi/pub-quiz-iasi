@@ -16,6 +16,7 @@ import {
   updateGameResultsTrigger,
 } from '../gameResultsSlice';
 import { selectLoading, selectUpdatedGameData } from '../selectors';
+import Loader from '../../../components/Loader';
 
 const useStyles = makeStyles()(() => ({
   gameInfo: { marginTop: '0px', marginBottom: '100px' },
@@ -75,7 +76,7 @@ const UpdateGameResults = ({ isAdmin }: UpdateGameResultsProps) => {
   };
 
   return (
-    <>
+    <Loader loading={!gameResults.season || loading}>
       <ResultsTable
         gameInfo={gameInfo}
         results={gameResults.results}
@@ -94,7 +95,7 @@ const UpdateGameResults = ({ isAdmin }: UpdateGameResultsProps) => {
           }}
         />
       </ResultsTable>
-    </>
+    </Loader>
   );
 };
 

@@ -26,7 +26,7 @@ export enum ErrorCodes {
 }
 
 export type ProviderProps = {
-  children: string | JSX.Element | JSX.Element[];
+  children?: string | JSX.Element | JSX.Element[] | unknown;
 };
 
 export type SnackbarState = {
@@ -46,7 +46,7 @@ export type LoaderProps = ProviderProps & {
 export type ActionModalProps = {
   modalOpen: boolean;
   setModalOpen: Dispatch<SetStateAction<boolean>>;
-  action: (...args: any[]) => void;
+  action: (...args: unknown[]) => void;
   title: string;
   content: string;
   actionName: string;

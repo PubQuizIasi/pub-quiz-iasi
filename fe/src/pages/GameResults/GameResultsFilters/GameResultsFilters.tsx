@@ -12,9 +12,10 @@ import {
   getGameResultsTrigger,
   setGameResultsFilters,
 } from '../gameResultsSlice';
-import { selectFilters, selectFiltersData } from '../selectors';
+import { selectFilters, selectFiltersData, selectFiltersLoading } from '../selectors';
 import { selectIsAdmin } from '../../Login/selectors';
 import Button from '../../../components/Button/Button';
+import Loader from '../../../components/Loader';
 
 const useStyles = makeStyles()((theme: Theme) => ({
   filtersContainer: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles()((theme: Theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '100px',
+    position: 'relative',
     [theme.breakpoints.down('md')]: {
       marginLeft: '50px',
       marginRight: '50px',
@@ -46,6 +48,7 @@ const GameResultsFilters = () => {
   const { t } = useTranslation('gameResults');
   const { classes } = useStyles();
   const isAdmin = useAppSelector(selectIsAdmin);
+  const filtersLoading = useAppSelector(selectFiltersLoading);
 
   useEffect(() => {
     if (filters.game) {
@@ -69,31 +72,33 @@ const GameResultsFilters = () => {
 
   return (
     <div className={classes.filtersContainer}>
-      <Autocomplete
-        className={classes.filter}
-        options={getSeasons()}
-        renderInput={(params) => <TextField {...params} label={t('filters.season')} />}
-        onChange={(_, value) => handleChange(value, GameResultsFiltersKeys.season)}
-        value={season}
-        noOptionsText={t('filters.noSeasons')}
-        getOptionLabel={(option) => String(option)}
-      />
-      <Autocomplete
-        className={clsx(classes.filter, classes.gameFilter)}
-        options={getGames()}
-        renderInput={(params) => <TextField {...params} label={t('filters.game')} />}
-        onChange={(_, value) => handleChange(value, GameResultsFiltersKeys.game)}
-        value={game}
-        noOptionsText={t('filters.noGames')}
-        getOptionLabel={(option) => String(option)}
-      />
-      {isAdmin && (
-        <Link to={paths.newGame}>
-          <Button className={classes.button} variant="contained">
-            {t('buttons.newGame')}
-          </Button>
-        </Link>
-      )}
+      <Loader loading={filtersLoading}>
+        <Autocomplete
+          className={classes.filter}
+          options={getSeasons()}
+          renderInput={(params) => <TextField {...params} label={t('filters.season')} />}
+          onChange={(_, value) => handleChange(value, GameResultsFiltersKeys.season)}
+          value={season}
+          noOptionsText={t('filters.noSeasons')}
+          getOptionLabel={(option) => String(option)}
+        />
+        <Autocomplete
+          className={clsx(classes.filter, classes.gameFilter)}
+          options={getGames()}
+          renderInput={(params) => <TextField {...params} label={t('filters.game')} />}
+          onChange={(_, value) => handleChange(value, GameResultsFiltersKeys.game)}
+          value={game}
+          noOptionsText={t('filters.noGames')}
+          getOptionLabel={(option) => String(option)}
+        />
+        {isAdmin && (
+          <Link to={paths.newGame}>
+            <Button className={classes.button} variant="contained">
+              {t('buttons.newGame')}
+            </Button>
+          </Link>
+        )}
+      </Loader>
     </div>
   );
 };

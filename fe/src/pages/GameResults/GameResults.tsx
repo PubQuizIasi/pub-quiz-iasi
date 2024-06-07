@@ -1,9 +1,9 @@
 import React from 'react';
-import GameResultsFilters from './GameResultsFilters';
-import ViewGameResults from './ViewGameResults';
-import UpdateGameResults from './UpdateGameResults/UpdateGameResults';
 import { useAppSelector } from '../../store/hooks';
 import { selectIsAdmin } from '../Login/selectors';
+import GameResultsFilters from './GameResultsFilters';
+import UpdateGameResults from './UpdateGameResults/UpdateGameResults';
+import ViewGameResults from './ViewGameResults';
 
 export const GameResults = () => {
   const isAdmin = useAppSelector(selectIsAdmin);
