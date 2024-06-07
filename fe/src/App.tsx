@@ -10,14 +10,15 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 // @ts-ignore
 import { store, persistor } from './store/store';
-import { CircularProgress, CssBaseline } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import ThemeProvider from './providers/ThemeProvider';
+import Loader from './components/Loader';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Suspense fallback={<CircularProgress size={60} />}>
+        <Suspense fallback={<Loader loading={true} />}>
           <ThemeProvider>
             <CssBaseline />
             <SnackbarProvider>
