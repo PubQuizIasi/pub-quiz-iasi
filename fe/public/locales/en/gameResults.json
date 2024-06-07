@@ -22,7 +22,9 @@
   "buttons": {
     "newGame": "Add game",
     "updateGame": "Update game",
-    "deleteGame": "Delete game"
+    "deleteGame": "Delete game",
+    "preview": "Preview",
+    "exitPreview": "Exit preview"
   },
   "deleteModal": {
     "title": "Delete game",

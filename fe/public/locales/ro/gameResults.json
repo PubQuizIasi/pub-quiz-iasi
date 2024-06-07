@@ -22,7 +22,9 @@
   "buttons": {
     "newGame": "Adaugă joc",
     "updateGame": "Actualizează joc",
-    "deleteGame": "Șterge joc"
+    "deleteGame": "Șterge joc",
+    "preview": "Modul previzualizare",
+    "exitPreview": "Ieși din modul previzualizare"
   },
   "deleteModal": {
     "title": "Șterge joc",

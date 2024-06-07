@@ -143,7 +143,7 @@ const ResultsTable: FC<ResultsTableProps> = ({
               setIsPreview(true);
             }}
           >
-            Preview
+            {t('buttons.preview')}
           </Button>
         )}
         {isAdmin && isPreview && (
@@ -153,7 +153,7 @@ const ResultsTable: FC<ResultsTableProps> = ({
               setIsPreview(false);
             }}
           >
-            Exit Preview
+            {t('buttons.exitPreview')}
           </Button>
         )}
       </div>
