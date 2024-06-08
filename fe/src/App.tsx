@@ -12,7 +12,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/store';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import Loader from './components/Loader';
-import theme from './common/theme';
+import { theme } from './common';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
