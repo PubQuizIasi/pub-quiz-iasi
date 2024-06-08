@@ -21,7 +21,7 @@ import storage from 'redux-persist/lib/storage';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const loginConfig = { key: 'login', storage };
+const loginConfig = { key: 'login', storage, blacklist: ['loading'] };
 
 const themeConfig = { key: 'theme', storage };
 
