@@ -15,15 +15,12 @@ import newGameResultsReducer from '../pages/GameResults/NewGameResults/newGameRe
 import gameResultsReducer from '../pages/GameResults/gameResultsSlice';
 import snackbarReducer from '../providers/snackbarProviderSlice';
 import loginReducer from '../pages/Login/loginSlice';
-import themeReducer from '../components/ThemeSelector/themeSelectorSlice';
 import contactReducer from '../pages/Contact/contactSlice';
 import storage from 'redux-persist/lib/storage';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const loginConfig = { key: 'login', storage, blacklist: ['loading'] };
-
-const themeConfig = { key: 'theme', storage };
 
 export const store = configureStore({
   reducer: {
@@ -32,7 +29,6 @@ export const store = configureStore({
     snackbar: snackbarReducer,
     login: persistReducer(loginConfig, loginReducer),
     contact: contactReducer,
-    theme: persistReducer(themeConfig, themeReducer),
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -6,7 +6,6 @@ import { paths } from '../../common';
 import { makeStyles } from 'tss-react/mui';
 import LanguageSelector from '../LanguageSelector';
 import MenuIcon from '@mui/icons-material/Menu';
-import ThemeSelector from '../ThemeSelector';
 import { logo } from '../../assets';
 
 const useStyles = makeStyles()((theme: Theme) => ({
@@ -44,7 +43,7 @@ const useStyles = makeStyles()((theme: Theme) => ({
   },
   selectorsContainer: {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     marginBottom: '25px',
   },
   drawerContainer: {
@@ -97,7 +96,6 @@ const Navbar = () => {
             </ListItemButton>
           </div>
           <div className={classes.selectorsContainer}>
-            <ThemeSelector />
             <LanguageSelector />
           </div>
         </List>

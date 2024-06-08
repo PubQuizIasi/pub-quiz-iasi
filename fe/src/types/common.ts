@@ -53,15 +53,6 @@ export type ActionModalProps = {
   children?: string | JSX.Element | JSX.Element[];
 };
 
-export type ThemeSelectorState = {
-  mode: string;
-};
-
-export enum Themes {
-  dark = 'dark',
-  light = 'light',
-}
-
 export interface ButtonProps {
   children: string | ReactNode;
   variant?: 'contained' | 'outlined' | 'text';

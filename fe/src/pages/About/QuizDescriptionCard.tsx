@@ -2,9 +2,7 @@ import React from 'react';
 import { Link, Theme, Typography } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 import clsx from 'clsx';
-import { Themes } from '../../types/common';
 import { useAppSelector } from '../../store/hooks';
-import { selectMode } from '../../components/ThemeSelector/selectors';
 import { grey, orange, yellow } from '@mui/material/colors';
 import LocalBarIcon from '@mui/icons-material/LocalBar';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
@@ -50,9 +48,6 @@ const useStyles = makeStyles()((theme: Theme) => ({
   secondPlace: {
     color: grey[700],
   },
-  secondPlaceDark: {
-    color: grey[300],
-  },
   thirdPlace: {
     color: orange[700],
   },
@@ -81,15 +76,10 @@ const QuizDescriptionCard = ({
   lastPlace,
 }: QuizDescriptionCardProps) => {
   const { classes } = useStyles();
-  const mode = useAppSelector(selectMode);
 
   return (
     <div className={classes.container}>
-      <img
-        className={clsx(classes.image, { [classes.imageWhite]: mode === Themes.dark })}
-        src={img}
-        alt="card-image"
-      />
+      <img className={classes.image} src={img} alt="card-image" />
       <Typography variant="h4" className={classes.title}>
         {title}
       </Typography>
@@ -113,11 +103,7 @@ const QuizDescriptionCard = ({
             {firstPlace}
           </Typography>
           <Typography variant="body1" className={classes.iconContainer}>
-            <EmojiEventsIcon
-              className={clsx(classes.iconSize, classes.secondPlace, {
-                [classes.secondPlaceDark]: mode === Themes.dark,
-              })}
-            />
+            <EmojiEventsIcon className={clsx(classes.iconSize, classes.secondPlace)} />
             {secondPlace}
           </Typography>
           <Typography variant="body1" className={classes.iconContainer}>

@@ -10,16 +10,16 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 // @ts-ignore
 import { store, persistor } from './store/store';
-import { CssBaseline } from '@mui/material';
-import ThemeProvider from './providers/ThemeProvider';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import Loader from './components/Loader';
+import theme from './common/theme';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Suspense fallback={<Loader loading={true} />}>
-          <ThemeProvider>
+          <ThemeProvider theme={theme}>
             <CssBaseline />
             <SnackbarProvider>
               <RouterProvider router={routes}></RouterProvider>

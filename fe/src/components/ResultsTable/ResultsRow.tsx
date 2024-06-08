@@ -5,21 +5,14 @@ import { makeStyles } from 'tss-react/mui';
 import { GameResultsFields, ResultsRowProps } from '../../types/gameResults';
 
 import { grey } from '@mui/material/colors';
-import { NUMBER_OF_ROUNDS, Themes } from '../../types/common';
+import { NUMBER_OF_ROUNDS } from '../../types/common';
 import RoundScore from './RoundScore';
 import RewardIcon from './RewardIcon';
-import { useAppSelector } from '../../store/hooks';
-import { selectMode } from '../ThemeSelector/selectors';
 
 const useStyles = makeStyles()((theme: Theme) => ({
   tableRow: {
     ':nth-child(2n)': {
       backgroundColor: grey[300],
-    },
-  },
-  tableRowDark: {
-    ':nth-child(2n)': {
-      backgroundColor: grey[700],
     },
   },
   jokerCell: {
@@ -45,15 +38,9 @@ const useStyles = makeStyles()((theme: Theme) => ({
 const ResultsRow = ({ teamIndex, isEditable, rounds, updateResults, results }: ResultsRowProps) => {
   const { classes } = useStyles();
   const teamName = results[teamIndex].teamName;
-  const mode = useAppSelector(selectMode);
 
   return (
-    <TableRow
-      className={clsx(
-        { [classes.tableRow]: !isEditable },
-        { [classes.tableRowDark]: mode === Themes.dark }
-      )}
-    >
+    <TableRow className={clsx({ [classes.tableRow]: !isEditable })}>
       <TableCell>
         {isEditable ? (
           <TextField

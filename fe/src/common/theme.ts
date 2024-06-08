@@ -1,10 +1,8 @@
 import { createTheme } from '@mui/material';
-import { blue, purple } from '@mui/material/colors';
-import { Themes } from '../types/common';
+import { blue } from '@mui/material/colors';
 
-const lightTheme = createTheme({
+const theme = createTheme({
   palette: {
-    mode: Themes.light,
     primary: {
       main: blue[700],
       contrastText: '#FFFFFF',
@@ -18,20 +16,4 @@ const lightTheme = createTheme({
   },
 });
 
-const darkTheme = createTheme({
-  palette: {
-    mode: Themes.dark,
-    primary: {
-      main: purple[400],
-      contrastText: '#FFFFFF',
-    },
-    secondary: {
-      main: '#000000',
-    },
-    text: {
-      primary: '#FFFFFF',
-    },
-  },
-});
-
-export { lightTheme, darkTheme };
+export default theme;

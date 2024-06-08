@@ -5,7 +5,6 @@ import { makeStyles } from 'tss-react/mui';
 import { paths } from '../../common';
 import Button from '../Button/Button';
 import LanguageSelector from '../LanguageSelector';
-import ThemeSelector from '../ThemeSelector';
 import MobileNavbar from './MobileNavbar';
 import React, { useEffect, useRef, useState } from 'react';
 import { logo } from '../../assets';
@@ -95,10 +94,6 @@ const useStyles = makeStyles()((theme: Theme) => ({
     textDecoration: 'underline',
     textUnderlineOffset: '4px',
   },
-  userActions: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
   showBackground: {
     backgroundColor: theme.palette.primary.main,
   },
@@ -182,10 +177,7 @@ const Navbar = () => {
             </Button>
           </Link>
         </nav>
-        <div className={classes.userActions}>
-          <ThemeSelector />
-          <LanguageSelector />
-        </div>
+        <LanguageSelector />
       </div>
     </header>
   );
