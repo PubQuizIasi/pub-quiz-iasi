@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { makeStyles } from 'tss-react/mui';
 import { yellow, grey, orange } from '@mui/material/colors';
 import { RewardIconProps } from '../../types/gameResults';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles()(() => ({
   rewardIcon: {
@@ -26,19 +27,31 @@ const useStyles = makeStyles()(() => ({
 
 const RewardIcon = ({ teamIndex, results }: RewardIconProps) => {
   const { classes } = useStyles();
+  const { t } = useTranslation('gameResults', { keyPrefix: 'tooltip' });
 
   return (
     <>
       {teamIndex === 0 && (
-        <EmojiEventsIcon className={clsx(classes.rewardIcon, classes.firstPlace)} />
+        <EmojiEventsIcon
+          titleAccess={t('first')}
+          className={clsx(classes.rewardIcon, classes.firstPlace)}
+        />
       )}
       {teamIndex === 1 && (
-        <EmojiEventsIcon className={clsx(classes.rewardIcon, classes.secondPlace)} />
+        <EmojiEventsIcon
+          titleAccess={t('second')}
+          className={clsx(classes.rewardIcon, classes.secondPlace)}
+        />
       )}
       {teamIndex === 2 && (
-        <EmojiEventsIcon className={clsx(classes.rewardIcon, classes.thirdPlace)} />
+        <EmojiEventsIcon
+          titleAccess={t('third')}
+          className={clsx(classes.rewardIcon, classes.thirdPlace)}
+        />
       )}
-      {teamIndex === results.length - 1 && <LocalBarIcon className={classes.rewardIcon} />}
+      {teamIndex === results.length - 1 && (
+        <LocalBarIcon titleAccess={t('last')} className={classes.rewardIcon} />
+      )}
     </>
   );
 };

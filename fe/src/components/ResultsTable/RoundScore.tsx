@@ -5,6 +5,7 @@ import { makeStyles } from 'tss-react/mui';
 import { RoundScoreProps } from '../../types/gameResults';
 import StarIcon from '@mui/icons-material/Star';
 import { MAX_SCORE_JOKER, MIN_SCORE } from '../../types/common';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles()(() => ({
   jokerContainer: {
@@ -28,6 +29,7 @@ const RoundScore = ({
   roundNumber,
 }: RoundScoreProps) => {
   const { classes } = useStyles();
+  const { t } = useTranslation('gameResults');
   const teamScore = results[teamIndex].points[roundNumber];
 
   return (
@@ -52,7 +54,9 @@ const RoundScore = ({
       ) : (
         <div className={classes.jokerContainer}>
           <Typography>{teamScore}</Typography>
-          {roundNumber === results[teamIndex].joker && <StarIcon className={classes.jokerIcon} />}
+          {roundNumber === results[teamIndex].joker && (
+            <StarIcon titleAccess={t('tooltip.joker')} className={classes.jokerIcon} />
+          )}
         </div>
       )}
     </TableCell>

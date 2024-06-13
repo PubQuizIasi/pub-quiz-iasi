@@ -7,7 +7,6 @@ import { NewGameStep, ResultsTableProps } from '../../types/gameResults';
 import ResultsRow from './ResultsRow';
 import ResultsTableHead from './ResultsTableHead';
 import ActionModal from '../ActionModal';
-import TableTooltip from './TableTooltip';
 import clsx from 'clsx';
 import Button from '../Button/Button';
 
@@ -83,7 +82,6 @@ const ResultsTable: FC<ResultsTableProps> = ({
             game,
           })}
         </Typography>
-        {!isAdmin && <TableTooltip />}
       </div>
       {children}
       <TableContainer component={Paper} className={classes.table}>

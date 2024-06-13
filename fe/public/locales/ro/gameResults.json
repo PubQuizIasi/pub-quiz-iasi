@@ -33,10 +33,10 @@
     "delete": "Șterge"
   },
   "tooltip": {
-    "joker": " = Joker",
-    "first": " = Locul 1",
-    "second": " = Locul 2",
-    "third": " = Locul 3",
-    "last": " = Ultimul loc"
+    "joker": "Joker",
+    "first": "Locul 1",
+    "second": "Locul 2",
+    "third": "Locul 3",
+    "last": "Rând de shoturi"
   }
 }

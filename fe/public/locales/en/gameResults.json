@@ -33,10 +33,10 @@
     "delete": "Delete"
   },
   "tooltip": {
-    "joker": " = Joker",
-    "first": " = 1st place",
-    "second": " = 2nd place",
-    "third": " = 3rd place",
-    "last": " = Last place"
+    "joker": "Joker",
+    "first": "1st place",
+    "second": "2nd place",
+    "third": "3rd place",
+    "last": "Shots"
   }
 }
