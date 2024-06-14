@@ -12,7 +12,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/store';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Loader from './components/Loader';
 import { theme } from './common';
 
