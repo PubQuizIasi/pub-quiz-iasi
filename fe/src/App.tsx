@@ -11,11 +11,13 @@ import { PersistGate } from 'redux-persist/integration/react';
 // @ts-ignore
 import { store, persistor } from './store/store';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import { Analytics } from '@vercel/analytics/react';
 import Loader from './components/Loader';
 import { theme } from './common';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <Analytics />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Suspense fallback={<Loader loading={true} />}>
