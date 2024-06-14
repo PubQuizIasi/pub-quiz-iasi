@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import User from '../models/userModel';
 import { ResponseCodes } from '../types/constants';
 import jwt from 'jsonwebtoken';
+import { getCorsOrigin } from '../utils/getCorsOrigin';
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
   const { username, password } = req.body;
@@ -12,7 +13,13 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     if (passwordMatches) {
       const expiresIn = 60 * 60;
       const jwtToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string, { expiresIn });
-      res.cookie('jwt', jwtToken, { secure: true, httpOnly: true, maxAge: expiresIn * 1000 });
+      res.cookie('jwt', jwtToken, {
+        domain: getCorsOrigin(),
+        path: '/',
+        secure: true,
+        httpOnly: true,
+        maxAge: expiresIn * 1000,
+      });
       res.status(200).send({ role: user.role, id: user._id });
     } else {
       res.status(401).send(ResponseCodes.WRONG_CREDENTIALS);
