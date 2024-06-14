@@ -14,8 +14,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
       const expiresIn = 60 * 60;
       const jwtToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string, { expiresIn });
       res.cookie('jwt', jwtToken, {
-        domain: getCorsOrigin(),
-        path: '/',
+        sameSite: 'none',
         secure: true,
         httpOnly: true,
         maxAge: expiresIn * 1000,
