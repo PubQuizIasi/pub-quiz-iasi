@@ -14,7 +14,7 @@ import { useGetCurrentPage } from '../../hooks';
 const useStyles = makeStyles()((theme: Theme) => ({
   header: {
     position: 'sticky',
-    width: '100vw',
+    width: '100%',
     top: 0,
     zIndex: 999,
     height: 100,
