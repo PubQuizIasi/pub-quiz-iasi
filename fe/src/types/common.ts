@@ -41,6 +41,7 @@ export type AdminContextType = {
 
 export type LoaderProps = ProviderProps & {
   loading: boolean;
+  loadingMessage?: string;
 };
 
 export type ActionModalProps = {

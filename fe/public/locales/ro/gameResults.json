@@ -38,5 +38,9 @@
     "second": "Locul 2",
     "third": "Locul 3",
     "last": "Rând de shoturi"
+  },
+  "loadingMessage": {
+    "filters": "Pregătim filtrele...",
+    "gameResults": "Calculăm rezulatele jocului..."
   }
 }

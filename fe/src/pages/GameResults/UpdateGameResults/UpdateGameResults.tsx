@@ -17,6 +17,7 @@ import {
 } from '../gameResultsSlice';
 import { selectLoading, selectUpdatedGameData } from '../selectors';
 import Loader from '../../../components/Loader';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles()(() => ({
   gameInfo: { marginTop: '0px', marginBottom: '100px' },
@@ -27,6 +28,7 @@ const UpdateGameResults = ({ isAdmin }: UpdateGameResultsProps) => {
   const gameResults = useAppSelector(selectUpdatedGameData);
   const loading = useAppSelector(selectLoading);
   const { classes } = useStyles();
+  const { t } = useTranslation('gameResults');
   const gameInfo = {
     game: gameResults.game,
     season: gameResults.season,
@@ -76,7 +78,10 @@ const UpdateGameResults = ({ isAdmin }: UpdateGameResultsProps) => {
   };
 
   return (
-    <Loader loading={!gameResults.season || loading}>
+    <Loader
+      loading={!gameResults.season || loading}
+      loadingMessage={t('loadingMessage.gameResults')}
+    >
       <ResultsTable
         gameInfo={gameInfo}
         results={gameResults.results}

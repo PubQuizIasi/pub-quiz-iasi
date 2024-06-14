@@ -38,5 +38,9 @@
     "second": "2nd place",
     "third": "3rd place",
     "last": "Shots"
+  },
+  "loadingMessage": {
+    "filters": "Preparing the game filters...",
+    "gameResults": "Calculating the game results..."
   }
 }

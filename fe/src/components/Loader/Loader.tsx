@@ -1,10 +1,14 @@
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 import React from 'react';
 import { makeStyles } from 'tss-react/mui';
 import { LoaderProps } from '../../types/common';
 
 const useStyles = makeStyles()(() => ({
-  loader: {
+  loaderContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '20px',
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -12,11 +16,16 @@ const useStyles = makeStyles()(() => ({
   },
 }));
 
-const Loader = ({ children, loading }: LoaderProps) => {
+const Loader = ({ children, loading, loadingMessage }: LoaderProps) => {
   const { classes } = useStyles();
 
   if (loading) {
-    return <CircularProgress className={classes.loader} size={60} />;
+    return (
+      <div className={classes.loaderContainer}>
+        <CircularProgress size={60} />
+        {loadingMessage && <Typography>{loadingMessage}</Typography>}
+      </div>
+    );
   }
   return <>{children}</>;
 };

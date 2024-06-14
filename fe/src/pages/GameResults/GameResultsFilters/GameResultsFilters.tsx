@@ -72,7 +72,7 @@ const GameResultsFilters = () => {
 
   return (
     <div className={classes.filtersContainer}>
-      <Loader loading={filtersLoading}>
+      <Loader loading={filtersLoading} loadingMessage={t('loadingMessage.filters')}>
         <Autocomplete
           className={classes.filter}
           options={getSeasons()}
