@@ -84,7 +84,7 @@ export const deleteGameResults = async (req: Request, res: Response, next: NextF
   const { season, game } = req.body;
   const gameResult = await GameResult.findOneAndDelete({ season, game });
   if (gameResult) {
-    res.status(202).send(ResponseCodes.GAME_DELETED_SUCCESFULLY);
+    res.status(202).send(ResponseCodes.GAME_DELETED_SUCCESSFULLY);
   } else {
     res.status(404).send(ResponseCodes.SEASON_OR_GAME_NOT_FOUND);
   }

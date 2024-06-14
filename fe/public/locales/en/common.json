@@ -8,7 +8,7 @@
     "CREDENTIALS_REQUIRED": "Your session has expired. Please login again.",
     "GAME_UPDATED_SUCCESSFULLY": "The game was updated successfully.",
     "GAME_CREATED_SUCCESSFULLY": "The game was added successfully.",
-    "GAME_DELETED_SUCCESFULLY": "The game was deleted successfully.",
+    "GAME_DELETED_SUCCESSFULLY": "The game was deleted successfully.",
     "GAME_ALREADY_EXISTS": "The game with this season and game number already exists.",
     "REGISTER_SUCCESS": "The account was created successfully.",
     "USERNAME_ALREADY_EXISTS": "There is already an account with this username.",

@@ -8,7 +8,7 @@
     "CREDENTIALS_REQUIRED": "Sesiunea ta a expirat. Te rugăm să te autentifici din nou.",
     "GAME_UPDATED_SUCCESSFULLY": "Jocul a fost actualizat cu succes.",
     "GAME_CREATED_SUCCESSFULLY": "Jocul a fost adăugat cu succes.",
-    "GAME_DELETED_SUCCESFULLY": "Jocul a fost șters cu succes.",
+    "GAME_DELETED_SUCCESSFULLY": "Jocul a fost șters cu succes.",
     "GAME_ALREADY_EXISTS": "Jocul cu acest număr și sezon există deja.",
     "REGISTER_SUCCESS": "Contul a fost creat cu succes.",
     "USERNAME_ALREADY_EXISTS": "Există deja un cont cu acest nume de utilizator.",
