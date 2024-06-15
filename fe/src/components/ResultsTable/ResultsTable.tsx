@@ -4,15 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { makeStyles } from 'tss-react/mui';
 import { MAX_SCORE_JOKER, MIN_SCORE, NUMBER_OF_ROUNDS } from '../../types/common';
 import { NewGameStep, ResultsTableProps } from '../../types/gameResults';
+import ActionModal from '../ActionModal';
+import Button from '../Button/Button';
 import ResultsRow from './ResultsRow';
 import ResultsTableHead from './ResultsTableHead';
-import ActionModal from '../ActionModal';
-import clsx from 'clsx';
-import Button from '../Button/Button';
 
 const useStyles = makeStyles()((theme: Theme) => ({
   container: {
-    marginTop: '160px',
+    margin: '160px 0',
     textAlign: 'center',
   },
   gameName: {
@@ -29,11 +28,6 @@ const useStyles = makeStyles()((theme: Theme) => ({
       margin: '0 30px',
       width: 'auto',
     },
-  },
-  titleAndTooltip: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
   },
 }));
 
@@ -75,14 +69,12 @@ const ResultsTable: FC<ResultsTableProps> = ({
 
   return (
     <div className={classes.container}>
-      <div className={clsx(!isAdmin && classes.titleAndTooltip)}>
-        <Typography variant="h4" className={classes.gameName}>
-          {t('gameName', {
-            season,
-            game,
-          })}
-        </Typography>
-      </div>
+      <Typography variant="h4" className={classes.gameName}>
+        {t('gameName', {
+          season,
+          game,
+        })}
+      </Typography>
       {children}
       <TableContainer component={Paper} className={classes.table}>
         <Table>
@@ -103,58 +95,60 @@ const ResultsTable: FC<ResultsTableProps> = ({
           )}
         </Table>
       </TableContainer>
-      <div className={classes.buttonsContainer}>
-        {changeStep && (
-          <Button variant="outlined" onClick={() => changeStep(NewGameStep.gameInfo)}>
-            {t('backButton')}
-          </Button>
-        )}
-        {deleteGame && (
-          <>
-            <Button variant="outlined" onClick={() => setModalOpen(true)}>
-              {t(`buttons.deleteGame`)}
+      {isAdmin && (
+        <div className={classes.buttonsContainer}>
+          {changeStep && (
+            <Button variant="outlined" onClick={() => changeStep(NewGameStep.gameInfo)}>
+              {t('backButton')}
             </Button>
-            <ActionModal
-              modalOpen={modalOpen}
-              setModalOpen={setModalOpen}
-              action={() => deleteGame(Number(season), Number(game))}
-              title={t('deleteModal.title')}
-              content={t('deleteModal.content', { season, game })}
-              actionName={t('deleteModal.delete')}
-            />
-          </>
-        )}
-        {submit && submitTranslationPath && (
-          <Button
-            variant="contained"
-            disabled={!isSubmitButtonEnabled}
-            loading={loading}
-            onClick={submit}
-          >
-            {t(`buttons.${submitTranslationPath}`)}
-          </Button>
-        )}
-        {isEditable && (
-          <Button
-            variant="contained"
-            onClick={() => {
-              setIsPreview(true);
-            }}
-          >
-            {t('buttons.preview')}
-          </Button>
-        )}
-        {isAdmin && isPreview && (
-          <Button
-            variant="contained"
-            onClick={() => {
-              setIsPreview(false);
-            }}
-          >
-            {t('buttons.exitPreview')}
-          </Button>
-        )}
-      </div>
+          )}
+          {deleteGame && (
+            <>
+              <Button variant="outlined" onClick={() => setModalOpen(true)}>
+                {t(`buttons.deleteGame`)}
+              </Button>
+              <ActionModal
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+                action={() => deleteGame(Number(season), Number(game))}
+                title={t('deleteModal.title')}
+                content={t('deleteModal.content', { season, game })}
+                actionName={t('deleteModal.delete')}
+              />
+            </>
+          )}
+          {submit && submitTranslationPath && (
+            <Button
+              variant="contained"
+              disabled={!isSubmitButtonEnabled}
+              loading={loading}
+              onClick={submit}
+            >
+              {t(`buttons.${submitTranslationPath}`)}
+            </Button>
+          )}
+          {isEditable && (
+            <Button
+              variant="contained"
+              onClick={() => {
+                setIsPreview(true);
+              }}
+            >
+              {t('buttons.preview')}
+            </Button>
+          )}
+          {isPreview && (
+            <Button
+              variant="contained"
+              onClick={() => {
+                setIsPreview(false);
+              }}
+            >
+              {t('buttons.exitPreview')}
+            </Button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

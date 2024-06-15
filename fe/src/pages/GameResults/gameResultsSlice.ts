@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { GameResultsFiltersState, GameResultsState } from '../../types/gameResults';
+import { SeasonLeaderboardPayload } from './../../types/gameResults';
 
 const initialState: GameResultsState = {
   filters: {
@@ -25,6 +26,7 @@ const initialState: GameResultsState = {
     results: [],
     _id: null,
   },
+  seasonLeaderboard: null,
   loading: false,
   deleteLoading: false,
   filtersLoading: false,
@@ -81,6 +83,16 @@ export const gameResultsSlice = createSlice({
     setGameResultsFilters: (state, action) => {
       state.filters = { ...state.filters, ...action.payload };
     },
+    getSeasonLeaderboardTrigger: (state, _action: PayloadAction<SeasonLeaderboardPayload>) => {
+      state.loading = true;
+    },
+    getSeasonLeaderboardSuccess: (state, action) => {
+      state.loading = false;
+      state.seasonLeaderboard = action.payload;
+    },
+    getSeasonLeaderboardFailure: (state) => {
+      state.loading = false;
+    },
   },
 });
 
@@ -99,6 +111,9 @@ export const {
   getGameResultsFiltersSuccess,
   getGameResultsFiltersFailure,
   setGameResultsFilters,
+  getSeasonLeaderboardTrigger,
+  getSeasonLeaderboardSuccess,
+  getSeasonLeaderboardFailure,
 } = gameResultsSlice.actions;
 
 export default gameResultsSlice.reducer;

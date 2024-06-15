@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { SeasonLeaderboardType } from './seasonLeaderboard';
 
 export enum GameInfoFields {
   game = 'game',
@@ -81,6 +82,7 @@ export type GameResultsState = {
   filtersData: Season[];
   currentGameData: GameResultsType;
   updatedGameData: GameResultsType;
+  seasonLeaderboard: SeasonLeaderboardType | null;
   loading: boolean;
   deleteLoading: boolean;
   filtersLoading: boolean;
@@ -96,6 +98,8 @@ export type GameResultsFiltersState = {
   game: number | null;
 };
 
+export type SeasonLeaderboardPayload = Pick<GameResultsFiltersState, 'season'>;
+
 export enum GameResultsFiltersKeys {
   season = 'season',
   game = 'game',
@@ -103,20 +107,22 @@ export enum GameResultsFiltersKeys {
 
 export type ResultsRowProps = {
   teamIndex: number;
-  isEditable?: boolean;
-  rounds: string[];
-  updateResults: UpdateResultsFn | undefined;
   results: Result[];
+  isEditable?: boolean;
+  rounds?: string[];
+  updateResults?: UpdateResultsFn | undefined;
 };
 
 export type ResultsTableHeadProps = {
   isEditable?: boolean;
-  rounds: string[];
+  rounds?: string[];
+  seasonLeaderboard?: boolean;
 };
 
 export type RewardIconProps = {
   teamIndex: number;
-  results: Result[];
+  results?: Result[];
+  showLast?: boolean;
 };
 
 export type RoundScoreProps = {

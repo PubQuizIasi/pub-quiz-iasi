@@ -16,6 +16,7 @@ const endpoints = {
   teamRegistration: baseUri + '/team-registration',
   updateLandmark: baseUri + '/team-registration' + '/landmark',
   resetReservations: baseUri + '/team-registration' + '/reset',
+  seasonLeaderboard: baseUri + '/season-leaderboard',
 };
 
 export default endpoints;

@@ -15,7 +15,7 @@ import {
   updateGameResults,
   updateGameResultsTrigger,
 } from '../gameResultsSlice';
-import { selectLoading, selectUpdatedGameData } from '../selectors';
+import { selectCurrentGameData, selectLoading, selectUpdatedGameData } from '../selectors';
 import Loader from '../../../components/Loader';
 import { useTranslation } from 'react-i18next';
 
@@ -26,6 +26,7 @@ const useStyles = makeStyles()(() => ({
 const UpdateGameResults = ({ isAdmin }: UpdateGameResultsProps) => {
   const dispatch = useAppDispatch();
   const gameResults = useAppSelector(selectUpdatedGameData);
+  const { season: previousSeason, game: previousGame } = useAppSelector(selectCurrentGameData);
   const loading = useAppSelector(selectLoading);
   const { classes } = useStyles();
   const { t } = useTranslation('gameResults');
@@ -66,7 +67,7 @@ const UpdateGameResults = ({ isAdmin }: UpdateGameResultsProps) => {
   };
 
   const submit = () => {
-    dispatch(updateGameResultsTrigger(gameResults));
+    dispatch(updateGameResultsTrigger({ previousGame, previousSeason, ...gameResults }));
   };
 
   const deleteGame = (season: number, game: number) => {

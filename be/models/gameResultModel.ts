@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import { handleSeasonLeaderboard } from '../controllers/seasonLeaderboardController';
+import { GameResultType } from '../types/gameResults';
 
 const Schema = mongoose.Schema;
 
@@ -44,6 +46,10 @@ const gameResultSchema = new Schema({
       required: true,
     },
   ],
+});
+
+gameResultSchema.post<GameResultType>('save', async function (next) {
+  handleSeasonLeaderboard(this);
 });
 
 export default mongoose.model('gameResult', gameResultSchema);

@@ -9,15 +9,18 @@
   "backButton": "Back",
   "table": {
     "teamName": "Team name",
+    "game": "G{{game}}",
     "joker": "Joker",
     "totalPoints": "Total"
   },
   "gameName": "Season {{season}} Game {{game}}",
+  "seasonLeaderboard": "Overall ranking of the season {{season}}",
   "filters": {
     "season": "Season",
     "game": "Game",
     "noSeasons": "There are no seasons available",
-    "noGames": "There are no games available"
+    "noGames": "There are no games available",
+    "OVERALL_RANKING": "Overall ranking"
   },
   "buttons": {
     "newGame": "Add game",
@@ -41,6 +44,7 @@
   },
   "loadingMessage": {
     "filters": "Preparing the game filters...",
-    "gameResults": "Calculating the game results..."
+    "gameResults": "Calculating the game results...",
+    "seasonLeaderboard": "Calculating the season ranking..."
   }
 }

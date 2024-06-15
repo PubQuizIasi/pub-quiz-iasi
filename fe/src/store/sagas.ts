@@ -6,6 +6,7 @@ import {
   updateGameResultsSaga,
   getGameResultsFiltersSaga,
 } from '../pages/GameResults/gameResultsSaga';
+import { seasonLeaderboardSaga } from '../pages/GameResults/SeasonLeaderboard/seasonLeaderboardSaga';
 import loginSaga from '../pages/Login/loginSaga';
 
 export default [
@@ -16,4 +17,5 @@ export default [
   getGameResultsFiltersSaga,
   loginSaga,
   contactSaga,
+  seasonLeaderboardSaga,
 ];
