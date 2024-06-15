@@ -1,6 +1,6 @@
 import endpoints from '../../common/endpoints';
 import { deleteRequest, getRequest, putRequest } from '../../http';
-import { GameResultsFiltersState } from '../../types/gameResults';
+import { GameResultsFiltersState, SeasonLeaderboardPayload } from '../../types/gameResults';
 
 const getGameResults = (params: GameResultsFiltersState) =>
   getRequest(endpoints.gameResults, params);
@@ -13,4 +13,13 @@ const deleteGameResults = (params: GameResultsFiltersState) =>
 
 const getGameResultsFilters = () => getRequest(endpoints.seasons);
 
-export { getGameResults, updateGameResults, deleteGameResults, getGameResultsFilters };
+const getSeasonLeaderboard = (params: SeasonLeaderboardPayload) =>
+  getRequest(endpoints.seasonLeaderboard, params);
+
+export {
+  getGameResults,
+  updateGameResults,
+  deleteGameResults,
+  getGameResultsFilters,
+  getSeasonLeaderboard,
+};

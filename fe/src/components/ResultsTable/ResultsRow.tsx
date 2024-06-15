@@ -63,7 +63,7 @@ const ResultsRow = ({ teamIndex, isEditable, rounds, updateResults, results }: R
           </div>
         )}
       </TableCell>
-      {isEditable && (
+      {isEditable && rounds && (
         <TableCell className={classes.jokerCell}>
           <Autocomplete
             options={rounds}

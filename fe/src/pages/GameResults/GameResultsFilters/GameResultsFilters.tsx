@@ -10,12 +10,14 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import {
   getGameResultsFiltersTrigger,
   getGameResultsTrigger,
+  getSeasonLeaderboardTrigger,
   setGameResultsFilters,
 } from '../gameResultsSlice';
 import { selectFilters, selectFiltersData, selectFiltersLoading } from '../selectors';
 import { selectIsAdmin } from '../../Login/selectors';
 import Button from '../../../components/Button/Button';
 import Loader from '../../../components/Loader';
+import { GAME_RESULTS_FILTERS_OVERALL_RANKING } from '../../../types/common';
 
 const useStyles = makeStyles()((theme: Theme) => ({
   filtersContainer: {
@@ -51,7 +53,9 @@ const GameResultsFilters = () => {
   const filtersLoading = useAppSelector(selectFiltersLoading);
 
   useEffect(() => {
-    if (filters.game) {
+    if (filters.game === GAME_RESULTS_FILTERS_OVERALL_RANKING) {
+      dispatch(getSeasonLeaderboardTrigger({ season: filters.season }));
+    } else if (filters.game) {
       dispatch(getGameResultsTrigger(filters));
     }
   }, [filters.game, filters.season, dispatch, filters]);
@@ -61,7 +65,10 @@ const GameResultsFilters = () => {
   }, [dispatch]);
 
   const getSeasons = () => filtersData.map((obj) => obj.season);
-  const getGames = () => filtersData.find((obj) => obj.season === Number(season))?.games ?? [];
+  const getGames = () => {
+    const games = filtersData.find((obj) => obj.season === Number(season))?.games ?? [];
+    return [GAME_RESULTS_FILTERS_OVERALL_RANKING, ...games];
+  };
 
   const handleChange = (value: number | null, key: keyof typeof GameResultsFiltersKeys) => {
     if (key === GameResultsFiltersKeys.season) {
@@ -89,7 +96,11 @@ const GameResultsFilters = () => {
           onChange={(_, value) => handleChange(value, GameResultsFiltersKeys.game)}
           value={game}
           noOptionsText={t('filters.noGames')}
-          getOptionLabel={(option) => String(option)}
+          getOptionLabel={(option) =>
+            option === GAME_RESULTS_FILTERS_OVERALL_RANKING
+              ? t(`filters.${option}`)
+              : String(option)
+          }
         />
         {isAdmin && (
           <Link to={paths.newGame}>

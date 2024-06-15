@@ -25,7 +25,7 @@ const useStyles = makeStyles()(() => ({
   },
 }));
 
-const RewardIcon = ({ teamIndex, results }: RewardIconProps) => {
+const RewardIcon = ({ teamIndex, results, showLast = true }: RewardIconProps) => {
   const { classes } = useStyles();
   const { t } = useTranslation('gameResults', { keyPrefix: 'tooltip' });
 
@@ -49,7 +49,7 @@ const RewardIcon = ({ teamIndex, results }: RewardIconProps) => {
           className={clsx(classes.rewardIcon, classes.thirdPlace)}
         />
       )}
-      {teamIndex === results.length - 1 && (
+      {showLast && results && teamIndex === results.length - 1 && (
         <LocalBarIcon titleAccess={t('last')} className={classes.rewardIcon} />
       )}
     </>

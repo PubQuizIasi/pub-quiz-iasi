@@ -9,15 +9,18 @@
   "backButton": "Înapoi",
   "table": {
     "teamName": "Nume echipă",
+    "game": "G{{ game }}",
     "joker": "Joker",
     "totalPoints": "Total"
   },
   "gameName": "Sezonul {{season}} Jocul {{game}}",
+  "seasonLeaderboard": "Clasamentul general al sezonului {{season}}",
   "filters": {
     "season": "Sezon",
     "game": "Joc",
     "noSeasons": "Nu sunt sezoane disponibile",
-    "noGames": "Nu sunt jocuri disponibile"
+    "noGames": "Nu sunt jocuri disponibile",
+    "OVERALL_RANKING": "Clasament general"
   },
   "buttons": {
     "newGame": "Adaugă joc",
@@ -41,6 +44,7 @@
   },
   "loadingMessage": {
     "filters": "Pregătim filtrele...",
-    "gameResults": "Calculăm rezulatele jocului..."
+    "gameResults": "Calculăm rezulatele jocului...",
+    "seasonLeaderboard": "Calculăm clasamentul general..."
   }
 }

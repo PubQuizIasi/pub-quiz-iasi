@@ -6,6 +6,11 @@ export type GameResultType = {
   rounds: string[];
 };
 
+export type UpdateGameResultType = GameResultType & {
+  previousSeason: number;
+  previousGame: number;
+};
+
 export type Result = {
   teamName: string;
   joker: number;
