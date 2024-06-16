@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Autocomplete, TextField, Theme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { GameResultsFiltersKeys, Season } from '../../../types/gameResults';
@@ -51,7 +51,6 @@ const GameResultsFilters = () => {
   const { classes } = useStyles();
   const isAdmin = useAppSelector(selectIsAdmin);
   const filtersLoading = useAppSelector(selectFiltersLoading);
-  const filterRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (filters.game === GAME_RESULTS_FILTERS_OVERALL_RANKING) {
@@ -76,9 +75,6 @@ const GameResultsFilters = () => {
       dispatch(setGameResultsFilters({ [GameResultsFiltersKeys.game]: null }));
     }
     dispatch(setGameResultsFilters({ [key]: value }));
-    if (key === GameResultsFiltersKeys.game && filterRef.current) {
-      filterRef.current.blur();
-    }
   };
 
   return (
@@ -87,6 +83,7 @@ const GameResultsFilters = () => {
         <Autocomplete
           className={classes.filter}
           options={getSeasons()}
+          blurOnSelect="touch"
           renderInput={(params) => <TextField {...params} label={t('filters.season')} />}
           onChange={(_, value) => handleChange(value, GameResultsFiltersKeys.season)}
           value={season}
@@ -96,6 +93,7 @@ const GameResultsFilters = () => {
         <Autocomplete
           className={clsx(classes.filter, classes.gameFilter)}
           options={getGames()}
+          blurOnSelect="touch"
           renderInput={(params) => <TextField {...params} label={t('filters.game')} />}
           onChange={(_, value) => handleChange(value, GameResultsFiltersKeys.game)}
           value={game}
