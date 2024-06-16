@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Autocomplete, TextField, Theme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { GameResultsFiltersKeys, Season } from '../../../types/gameResults';
@@ -51,6 +51,7 @@ const GameResultsFilters = () => {
   const { classes } = useStyles();
   const isAdmin = useAppSelector(selectIsAdmin);
   const filtersLoading = useAppSelector(selectFiltersLoading);
+  const filterRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (filters.game === GAME_RESULTS_FILTERS_OVERALL_RANKING) {
@@ -75,6 +76,9 @@ const GameResultsFilters = () => {
       dispatch(setGameResultsFilters({ [GameResultsFiltersKeys.game]: null }));
     }
     dispatch(setGameResultsFilters({ [key]: value }));
+    if (key === GameResultsFiltersKeys.game && filterRef.current) {
+      filterRef.current.blur();
+    }
   };
 
   return (
