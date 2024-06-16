@@ -3,7 +3,6 @@ import { NextFunction, Request, Response } from 'express';
 import User from '../models/userModel';
 import { ResponseCodes } from '../types/constants';
 import jwt from 'jsonwebtoken';
-import { getCorsOrigin } from '../utils/getCorsOrigin';
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
   const { username, password } = req.body;
@@ -11,14 +10,29 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   if (user) {
     const passwordMatches = await bcrypt.compare(password, user.password);
     if (passwordMatches) {
-      const expiresIn = 60 * 60;
-      const jwtToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string, { expiresIn });
+      const accessTokenExpiresIn = 60 * 60;
+      const refreshTokenExpiresIn = 7 * 24 * 60 * 60;
+
+      const jwtToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string, {
+        expiresIn: accessTokenExpiresIn,
+      });
+      const refreshToken = jwt.sign({ id: user._id }, process.env.JWT_REFRESH_SECRET as string, {
+        expiresIn: refreshTokenExpiresIn,
+      });
+
       res.cookie('jwt', jwtToken, {
         sameSite: 'none',
         secure: true,
         httpOnly: true,
-        maxAge: expiresIn * 1000,
+        maxAge: accessTokenExpiresIn * 1000,
       });
+      res.cookie('refreshJwt', refreshToken, {
+        sameSite: 'none',
+        secure: true,
+        httpOnly: true,
+        maxAge: refreshTokenExpiresIn * 1000,
+      });
+
       res.status(200).send({ role: user.role, id: user._id });
     } else {
       res.status(401).send(ResponseCodes.WRONG_CREDENTIALS);
@@ -28,14 +42,56 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   }
 };
 
+export const refreshToken = async (req: Request, res: Response, next: NextFunction) => {
+  const { refreshJwt } = req.cookies;
+  if (!refreshJwt) {
+    return res.status(401).send(ResponseCodes.CREDENTIALS_REQUIRED);
+  }
+  try {
+    const payload = jwt.verify(
+      refreshJwt,
+      process.env.JWT_REFRESH_SECRET as string
+    ) as jwt.JwtPayload;
+    const user = await User.findById(payload.id);
+
+    if (!user) {
+      return res.status(401).send(ResponseCodes.CREDENTIALS_REQUIRED);
+    }
+
+    const accessTokenExpiresIn = 60 * 60;
+    const refreshTokenExpiresIn = 7 * 24 * 60 * 60;
+
+    const newJwtToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string, {
+      expiresIn: accessTokenExpiresIn,
+    });
+    const newRefreshToken = jwt.sign({ id: user._id }, process.env.JWT_REFRESH_SECRET as string, {
+      expiresIn: refreshTokenExpiresIn,
+    });
+
+    res.cookie('jwt', newJwtToken, {
+      sameSite: 'none',
+      secure: true,
+      httpOnly: true,
+      maxAge: accessTokenExpiresIn * 1000,
+    });
+
+    res.cookie('refreshJwt', newRefreshToken, {
+      sameSite: 'none',
+      secure: true,
+      httpOnly: true,
+      maxAge: refreshTokenExpiresIn * 1000,
+    });
+
+    res.status(200).send({ role: user.role, id: user._id });
+  } catch (err) {
+    res.status(401).send(ResponseCodes.CREDENTIALS_REQUIRED);
+  }
+};
+
 export const register = async (req: Request, res: Response, next: NextFunction) => {
   const findUsername = await User.findOne({ username: req.body.username });
-  const findEmail = await User.findOne({ email: req.body.email });
   if (findUsername) {
     return res.status(400).send(ResponseCodes.USERNAME_ALREADY_EXISTS);
-  }
-  if (findEmail) {
-    return res.status(400).send(ResponseCodes.EMAIL_ALREADY_EXISTS);
   }
   try {
     const user = new User(req.body);
