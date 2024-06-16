@@ -1,6 +1,7 @@
 import {
   Paper,
   Table,
+  TableBody,
   TableCell,
   TableContainer,
   TableRow,
@@ -17,6 +18,7 @@ import { NUMBER_OF_GAMES_PER_SEASON } from '../../../types/common';
 import { SeasonLeaderboardType } from '../../../types/seasonLeaderboard';
 import { selectLoading, selectSeasonLeaderboard } from '../selectors';
 import RewardIcon from '../../../components/ResultsTable/RewardIcon';
+import { grey } from '@mui/material/colors';
 
 const useStyles = makeStyles()((theme: Theme) => ({
   container: {
@@ -47,6 +49,11 @@ const useStyles = makeStyles()((theme: Theme) => ({
     paddingRight: '32px',
     position: 'relative',
   },
+  tableRow: {
+    ':nth-of-type(2n)': {
+      backgroundColor: grey[300],
+    },
+  },
 }));
 
 const SeasonLeaderboard = () => {
@@ -64,28 +71,30 @@ const SeasonLeaderboard = () => {
         <TableContainer component={Paper} className={classes.table}>
           <Table>
             <ResultsTableHead seasonLeaderboard />
-            {results.map(({ teamName, gameResult, totalPoints }, teamIndex) => (
-              <TableRow key={teamName}>
-                <TableCell>
-                  <div className={classes.teamNameContainer}>
-                    <Typography className={classes.teamIndex}>{teamIndex + 1}</Typography>
-                    <Typography textAlign="center">{teamName}</Typography>
-                  </div>
-                </TableCell>
-                {[...Array(NUMBER_OF_GAMES_PER_SEASON)].map((_, index) => {
-                  const res = gameResult.find((gameRes) => gameRes.game === index + 1);
-                  return (
-                    <TableCell key={res?.game}>
-                      <Typography textAlign="center">{res?.points ?? '-'}</Typography>
-                    </TableCell>
-                  );
-                })}
-                <TableCell className={classes.totalPointsCell}>
-                  <Typography textAlign="right">{totalPoints}</Typography>
-                  <RewardIcon teamIndex={teamIndex} showLast={false} />
-                </TableCell>
-              </TableRow>
-            ))}
+            <TableBody>
+              {results.map(({ teamName, gameResult, totalPoints }, teamIndex) => (
+                <TableRow key={teamName} className={classes.tableRow}>
+                  <TableCell>
+                    <div className={classes.teamNameContainer}>
+                      <Typography className={classes.teamIndex}>{teamIndex + 1}</Typography>
+                      <Typography textAlign="center">{teamName}</Typography>
+                    </div>
+                  </TableCell>
+                  {[...Array(NUMBER_OF_GAMES_PER_SEASON)].map((_, index) => {
+                    const res = gameResult.find((gameRes) => gameRes.game === index + 1);
+                    return (
+                      <TableCell key={index}>
+                        <Typography textAlign="center">{res?.points ?? '-'}</Typography>
+                      </TableCell>
+                    );
+                  })}
+                  <TableCell className={classes.totalPointsCell}>
+                    <Typography textAlign="right">{totalPoints}</Typography>
+                    <RewardIcon teamIndex={teamIndex} showLast={false} />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
           </Table>
         </TableContainer>
       </div>

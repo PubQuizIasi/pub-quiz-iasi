@@ -11,7 +11,7 @@ import RewardIcon from './RewardIcon';
 
 const useStyles = makeStyles()((theme: Theme) => ({
   tableRow: {
-    ':nth-child(2n)': {
+    ':nth-of-type(2n)': {
       backgroundColor: grey[300],
     },
   },
