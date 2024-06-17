@@ -1,46 +1,59 @@
 import React from 'react';
+import { QuizDescriptionCardProps } from '../../types/about';
 import { Link, Theme, Typography } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 import clsx from 'clsx';
-import { useAppSelector } from '../../store/hooks';
 import { grey, orange, yellow } from '@mui/material/colors';
 import LocalBarIcon from '@mui/icons-material/LocalBar';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import { QuizDescriptionCardProps } from '../../types/about';
 
 const useStyles = makeStyles()((theme: Theme) => ({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    borderRadius: 20,
+    position: 'relative',
+    color: theme.palette.primary.contrastText,
+    maxHeight: '500px',
+    maxWidth: '500px',
+  },
+  img: {
+    maxWidth: '100%',
+    borderRadius: '10%',
+    filter: 'brightness(30%)',
     boxShadow: `0 4px 17px 5px rgba(0, 0, 0, 0.6)`,
-    border: `3px solid ${theme.palette.common.black}`,
-    margin: 30,
-    width: 400,
-    height: 600,
+    border: `2px solid ${theme.palette.common.black}`,
   },
-  image: {
-    width: '100px',
-    margin: '70px 0 20px 0',
-  },
-  imageWhite: {
-    filter: 'invert(1)',
-  },
-  title: {
-    textAlign: 'center',
-    marginBottom: '30px',
+  content: {
+    position: 'absolute',
+    top: '0%',
+    left: '50%',
+    height: '100%',
+    width: '100%',
     padding: '0 40px',
+    transform: 'translateX(-50%)',
+    textAlign: 'center',
   },
   description: {
-    textAlign: 'center',
-    padding: '0 40px',
+    color: theme.palette.primary.contrastText,
+    textDecoration: 'underline',
   },
-  iconSize: {
-    width: '50px',
+  title: {
+    margin: '30px 0 70px 0',
+    [theme.breakpoints.down(1300)]: {
+      marginBottom: '40px',
+    },
+    [theme.breakpoints.down(1100)]: {
+      marginBottom: '70px',
+    },
   },
-  joker: {
-    color: yellow[700],
+  iconContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  prizes: {
+    display: 'grid',
+    gridTemplateRows: 'repeat(4, 1fr)',
+    gridTemplateColumns: 'repeat(2, max-content)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   firstPlace: {
     color: yellow[700],
@@ -53,14 +66,10 @@ const useStyles = makeStyles()((theme: Theme) => ({
   },
   lastPlace: {
     color: theme.palette.text.primary,
+    filter: 'invert(1)',
   },
-  prizes: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  iconContainer: {
-    display: 'flex',
-    alignItems: 'center',
+  iconSize: {
+    width: '50px',
   },
 }));
 
@@ -79,43 +88,47 @@ const QuizDescriptionCard = ({
 
   return (
     <div className={classes.container}>
-      <img className={classes.image} src={img} alt="card-image" />
-      <Typography variant="h4" className={classes.title}>
-        {title}
-      </Typography>
-      <Typography variant="body1" className={classes.description}>
-        {description}
-      </Typography>
-      <Link
-        href="https://maps.app.goo.gl/T3syHBkiqhwK3GB16"
-        target="_blank"
-        underline="none"
-        rel="noopener noreferrer"
-      >
-        <Typography variant="body1" className={classes.description}>
-          {address}
+      <img className={classes.img} src={img} />
+      <div className={classes.content}>
+        <Typography className={classes.title} variant="h4">
+          {title}
         </Typography>
-      </Link>
-      {isPrizeSection && (
-        <div className={classes.prizes}>
-          <Typography variant="body1" className={classes.iconContainer}>
-            <EmojiEventsIcon className={clsx(classes.iconSize, classes.firstPlace)} />
-            {firstPlace}
-          </Typography>
-          <Typography variant="body1" className={classes.iconContainer}>
-            <EmojiEventsIcon className={clsx(classes.iconSize, classes.secondPlace)} />
-            {secondPlace}
-          </Typography>
-          <Typography variant="body1" className={classes.iconContainer}>
-            <EmojiEventsIcon className={clsx(classes.iconSize, classes.thirdPlace)} />
-            {thirdPlace}
-          </Typography>
-          <Typography variant="body1" className={classes.iconContainer}>
-            <LocalBarIcon className={clsx(classes.iconSize, classes.lastPlace)} />
-            {lastPlace}
-          </Typography>
+        <div>
+          <Typography variant="h6">{description}</Typography>
+          {address && (
+            <Link
+              href="https://maps.app.goo.gl/T3syHBkiqhwK3GB16"
+              target="_blank"
+              underline="none"
+              rel="noopener noreferrer"
+            >
+              <Typography variant="h6" className={classes.description}>
+                {address}
+              </Typography>
+            </Link>
+          )}
+          {isPrizeSection && (
+            <div className={classes.prizes}>
+              <EmojiEventsIcon className={clsx(classes.iconSize, classes.firstPlace)} />
+              <Typography variant="h6" className={classes.iconContainer}>
+                {firstPlace}
+              </Typography>
+              <EmojiEventsIcon className={clsx(classes.iconSize, classes.secondPlace)} />
+              <Typography variant="h6" className={classes.iconContainer}>
+                {secondPlace}
+              </Typography>
+              <EmojiEventsIcon className={clsx(classes.iconSize, classes.thirdPlace)} />
+              <Typography variant="h6" className={classes.iconContainer}>
+                {thirdPlace}
+              </Typography>
+              <LocalBarIcon className={clsx(classes.iconSize, classes.lastPlace)} />
+              <Typography variant="h6" className={classes.iconContainer}>
+                {lastPlace}
+              </Typography>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

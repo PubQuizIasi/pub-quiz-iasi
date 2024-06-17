@@ -1,17 +1,20 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import { Theme, Typography } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 import { useTranslation } from 'react-i18next';
 import RoundsFormatCard from './RoundsFormatCard';
 import { number1, number2, number3, number4, number5 } from '../../assets';
 
-const useStyles = makeStyles()(() => ({
+const useStyles = makeStyles()((theme: Theme) => ({
   gameRoundsContainer: {
     display: 'flex',
     flexDirection: 'column',
     gap: '30px',
     padding: '0 20%',
     margin: '100px 0',
+    [theme.breakpoints.down(1100)]: {
+      padding: '0 5%',
+    },
   },
   gameRoundsHeader: {
     display: 'flex',

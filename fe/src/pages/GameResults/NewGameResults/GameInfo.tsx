@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { TextField, Theme } from '@mui/material';
 import React, { FC } from 'react';
 import { makeStyles } from 'tss-react/mui';
 import { useTranslation } from 'react-i18next';
@@ -7,13 +7,16 @@ import { NUMBER_OF_ROUNDS } from '../../../types/common';
 import clsx from 'clsx';
 import Button from '../../../components/Button/Button';
 
-const useStyles = makeStyles()(() => ({
+const useStyles = makeStyles()((theme: Theme) => ({
   form: {
     display: 'grid',
     marginTop: '160px',
     gridTemplateColumns: '300px 300px',
     gap: '24px 16px',
     justifyContent: 'center',
+    [theme.breakpoints.down(1100)]: {
+      gridTemplateColumns: 'repeat(1, 1fr)',
+    },
   },
   numberOfTeams: {
     gridColumnStart: 1,

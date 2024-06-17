@@ -12,7 +12,7 @@ const useStyles = makeStyles()((theme: Theme) => ({
     margin: '100px 0',
     gap: '20px',
     [theme.breakpoints.down(1100)]: {
-      margin: '100px 50px',
+      margin: '100px 0px',
     },
   },
   description: {

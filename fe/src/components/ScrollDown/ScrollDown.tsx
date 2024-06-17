@@ -47,7 +47,8 @@ const ScrollDown = () => {
 
   const scrollDown = () => {
     const pageHeight = window.innerHeight;
-    window.scrollTo({ top: pageHeight });
+    const headerHeight = document.getElementsByTagName('header')[0].offsetHeight;
+    window.scrollTo({ top: pageHeight - headerHeight });
   };
 
   return (
