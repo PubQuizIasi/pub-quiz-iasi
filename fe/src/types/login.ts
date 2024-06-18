@@ -16,9 +16,9 @@ export enum Roles {
 export interface LoginState {
   credentials: LoginCredentials;
   role: Roles | null;
-  id: string | null;
   loading: boolean;
   error: string | null;
+  shouldRedirect: boolean;
 }
 
 export enum LoginFields {

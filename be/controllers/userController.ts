@@ -33,7 +33,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         maxAge: refreshTokenExpiresIn * 1000,
       });
 
-      res.status(200).send({ role: user.role, id: user._id });
+      res.status(200).send({ role: user.role, id: user._id, message: ResponseCodes.LOGIN_SUCCESS });
     } else {
       res.status(401).send(ResponseCodes.WRONG_CREDENTIALS);
     }

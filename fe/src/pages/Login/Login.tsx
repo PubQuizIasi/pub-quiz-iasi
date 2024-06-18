@@ -3,11 +3,18 @@ import { clsx } from 'clsx';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from 'tss-react/mui';
-import { LoginFields } from '../../types/login';
+import { LoginFields, Roles } from '../../types/login';
 import { useNavigate } from 'react-router-dom';
-import { loginTrigger, updateCredentials } from './loginSlice';
+import { loginTrigger, setShouldRedirect, updateCredentials } from './loginSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectCredentials, selectError, selectLoading, selectRole } from './selectors';
+import {
+  selectCredentials,
+  selectError,
+  selectIsAdmin,
+  selectLoading,
+  selectRole,
+  selectShouldRedirect,
+} from './selectors';
 import { paths } from '../../common';
 import Button from '../../components/Button/Button';
 
@@ -41,7 +48,8 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const credentials = useAppSelector(selectCredentials);
   const loading = useAppSelector(selectLoading);
-  const role = useAppSelector(selectRole);
+  const isAdmin = useAppSelector(selectIsAdmin);
+  const shouldRedirect = useAppSelector(selectShouldRedirect);
   const error = useAppSelector(selectError);
   const { classes } = useStyles();
   const { t } = useTranslation('login');
@@ -52,10 +60,11 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (role) {
+    if (isAdmin && shouldRedirect) {
       navigate(paths.root);
+      dispatch(setShouldRedirect(false));
     }
-  }, [navigate, role]);
+  }, [navigate, isAdmin, shouldRedirect]);
 
   const login = () => {
     dispatch(loginTrigger(credentials));

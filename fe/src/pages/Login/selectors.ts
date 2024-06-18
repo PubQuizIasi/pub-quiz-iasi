@@ -11,6 +11,13 @@ const selectRole = (state: RootState) => state.login.role;
 
 const selectError = (state: RootState) => state.login.error;
 
-const selectId = (state: RootState) => state.login.id;
+const selectShouldRedirect = (state: RootState) => state.login.shouldRedirect;
 
-export { selectCredentials, selectLoading, selectIsAdmin, selectRole, selectError, selectId };
+export {
+  selectCredentials,
+  selectLoading,
+  selectIsAdmin,
+  selectRole,
+  selectError,
+  selectShouldRedirect,
+};

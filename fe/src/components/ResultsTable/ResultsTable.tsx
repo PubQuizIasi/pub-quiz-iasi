@@ -75,7 +75,7 @@ const ResultsTable: FC<ResultsTableProps> = ({
           game,
         })}
       </Typography>
-      {children}
+      {isEditable && <>{children}</>}
       <TableContainer component={Paper} className={classes.table}>
         <Table>
           <ResultsTableHead rounds={rounds} isEditable={isEditable} />
@@ -97,35 +97,39 @@ const ResultsTable: FC<ResultsTableProps> = ({
       </TableContainer>
       {isAdmin && (
         <div className={classes.buttonsContainer}>
-          {changeStep && (
-            <Button variant="outlined" onClick={() => changeStep(NewGameStep.gameInfo)}>
-              {t('backButton')}
-            </Button>
-          )}
-          {deleteGame && (
+          {isEditable && (
             <>
-              <Button variant="outlined" onClick={() => setModalOpen(true)}>
-                {t(`buttons.deleteGame`)}
-              </Button>
-              <ActionModal
-                modalOpen={modalOpen}
-                setModalOpen={setModalOpen}
-                action={() => deleteGame(Number(season), Number(game))}
-                title={t('deleteModal.title')}
-                content={t('deleteModal.content', { season, game })}
-                actionName={t('deleteModal.delete')}
-              />
+              {changeStep && (
+                <Button variant="outlined" onClick={() => changeStep(NewGameStep.gameInfo)}>
+                  {t('backButton')}
+                </Button>
+              )}
+              {deleteGame && (
+                <>
+                  <Button variant="outlined" onClick={() => setModalOpen(true)}>
+                    {t(`buttons.deleteGame`)}
+                  </Button>
+                  <ActionModal
+                    modalOpen={modalOpen}
+                    setModalOpen={setModalOpen}
+                    action={() => deleteGame(Number(season), Number(game))}
+                    title={t('deleteModal.title')}
+                    content={t('deleteModal.content', { season, game })}
+                    actionName={t('deleteModal.delete')}
+                  />
+                </>
+              )}
+              {submit && submitTranslationPath && (
+                <Button
+                  variant="contained"
+                  disabled={!isSubmitButtonEnabled}
+                  loading={loading}
+                  onClick={submit}
+                >
+                  {t(`buttons.${submitTranslationPath}`)}
+                </Button>
+              )}
             </>
-          )}
-          {submit && submitTranslationPath && (
-            <Button
-              variant="contained"
-              disabled={!isSubmitButtonEnabled}
-              loading={loading}
-              onClick={submit}
-            >
-              {t(`buttons.${submitTranslationPath}`)}
-            </Button>
           )}
           {isEditable && (
             <Button

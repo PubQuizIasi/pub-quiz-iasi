@@ -23,8 +23,8 @@ const ContactData = () => {
   const { t } = useTranslation('contact', { keyPrefix: 'contacts' });
   const { classes } = useStyles();
   const contacts = [
-    { Icon: EmailIcon, translationKey: 'email', mail: true },
-    { Icon: CallIcon, translationKey: 'phone', phone: true },
+    { Icon: EmailIcon, translationKey: 'email', link: 'mailto:' + t('email') },
+    { Icon: CallIcon, translationKey: 'phone', link: 'tel:' + t('phone') },
     { Icon: FacebookIcon, translationKey: 'facebookPage', link: facebookUrl },
     { Icon: GroupsIcon, translationKey: 'facebookGroup', link: facebookGroupUrl },
   ];
@@ -34,7 +34,7 @@ const ContactData = () => {
       <Typography variant="h4" textAlign="center" className={classes.title}>
         {t('title')}
       </Typography>
-      {contacts.map(({ Icon, translationKey, link, phone, mail }) => (
+      {contacts.map(({ Icon, translationKey, link }) => (
         <div className={classes.alignContact} key={translationKey}>
           <Icon />
           {link && (
@@ -42,9 +42,6 @@ const ContactData = () => {
               <Typography>{t(translationKey)}</Typography>
             </Link>
           )}
-          {mail && <a href={`mailto:${t(translationKey)}`}>{t(translationKey)}</a>}
-          {phone && <a href={`tel:${t(translationKey)}`}>{t(translationKey)}</a>}
-          {!link && !phone && !mail && <Typography>{t(translationKey)}</Typography>}
         </div>
       ))}
     </div>

@@ -4,10 +4,10 @@ import { LoginCredentialsState, LoginState } from '../../types/login';
 
 const initialState: LoginState = {
   credentials: { username: '', password: '' },
-  id: null,
   role: null,
   loading: false,
   error: null,
+  shouldRedirect: false,
 };
 
 export const loginSlice = createSlice({
@@ -21,7 +21,6 @@ export const loginSlice = createSlice({
       state.loading = false;
       state.error = null;
       state.role = action.payload.role;
-      state.id = action.payload.id;
     },
     loginFailure: (state, action) => {
       state.loading = false;
@@ -31,13 +30,13 @@ export const loginSlice = createSlice({
       state.credentials = { ...state.credentials, ...action.payload };
       state.error = null;
     },
-    logout: (_state) => {
-      return initialState;
+    setShouldRedirect: (state, action) => {
+      state.shouldRedirect = action.payload;
     },
   },
 });
 
-export const { loginTrigger, loginSuccess, loginFailure, updateCredentials, logout } =
+export const { loginTrigger, loginSuccess, loginFailure, updateCredentials, setShouldRedirect } =
   loginSlice.actions;
 
 export default loginSlice.reducer;
