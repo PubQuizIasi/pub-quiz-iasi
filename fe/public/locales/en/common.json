@@ -13,7 +13,7 @@
     "REGISTER_SUCCESS": "The account was created successfully.",
     "USERNAME_ALREADY_EXISTS": "There is already an account with this username.",
     "EMAIL_ALREADY_EXISTS": "There is already an account with this email.",
-    "EMAIL_SENT_SUCCESSFULLY": "The email was sent successfully.",
+    "EMAIL_SENT_SUCCESSFULLY": "Your message was sent successfully.",
     "EMAIL_NOT_SENT": "Your email could not be sent. Please try again later.",
     "LOGIN_SUCCESS": "Logged in successfully."
   }

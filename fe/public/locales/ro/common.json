@@ -13,7 +13,7 @@
     "REGISTER_SUCCESS": "Contul a fost creat cu succes.",
     "USERNAME_ALREADY_EXISTS": "Există deja un cont cu acest nume de utilizator.",
     "EMAIL_ALREADY_EXISTS": "Există deja un cont cu acestă adresă de email.",
-    "EMAIL_SENT_SUCCESSFULLY": "Emailul a fost trimis cu succes.",
+    "EMAIL_SENT_SUCCESSFULLY": "Mesajul tău a fost trimis cu succes.",
     "EMAIL_NOT_SENT": "Emailul tău nu a putut fi trimis. Încearcă din nou mai târziu.",
     "LOGIN_SUCCESS": "Te-ai autentificat cu succes."
   }
