@@ -8,7 +8,7 @@ import { ScrollDown } from '../../components/ScrollDown';
 const useStyles = makeStyles()((theme: Theme) => ({
   container: {
     height: '100vh',
-    background: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(${heroCard})`,
+    background: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(${heroCard}) no-repeat center center fixed`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     color: theme.palette.primary.contrastText,

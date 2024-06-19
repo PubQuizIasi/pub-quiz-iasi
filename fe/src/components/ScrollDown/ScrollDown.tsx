@@ -14,6 +14,9 @@ const useStyles = makeStyles()((theme) => ({
     bottom: 200,
     left: '50%',
     transform: 'translateX(-50%)',
+    [theme.breakpoints.down(1100)]: {
+      bottom: 100,
+    },
   },
   scrollIcon: {
     borderLeft: '2px solid #fff',
