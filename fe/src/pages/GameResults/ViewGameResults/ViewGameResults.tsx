@@ -13,7 +13,7 @@ const ViewGameResults = () => {
   return (
     <Loader
       loading={!gameResults.season || gameResultsLoading}
-      loadingMessage={t('loadingMessage.filters')}
+      loadingMessage={t('loadingMessage.gameResults')}
     >
       <ResultsTable
         gameInfo={{
