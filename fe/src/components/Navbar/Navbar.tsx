@@ -101,8 +101,7 @@ const useStyles = makeStyles()((theme: Theme) => ({
 
 const Navbar = () => {
   const { t } = useTranslation('home', { keyPrefix: 'navbar' });
-  const { isLandingPage, isTeamRegistration, isGameResults, isCorporateGames, isFaq, isContact } =
-    useGetCurrentPage();
+  const { isLandingPage, isGameResults, isCorporateGames, isFaq, isContact } = useGetCurrentPage();
   const { classes } = useStyles();
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down(1100));
   const ref = useRef<null | HTMLElement>(null);
@@ -149,11 +148,6 @@ const Navbar = () => {
               className={clsx({ [classes.currentPage]: isLandingPage }, classes.button)}
             >
               {t('about')}
-            </Button>
-          </Link>
-          <Link to={paths.teamRegistration} target="_blank">
-            <Button className={clsx({ [classes.currentPage]: isTeamRegistration }, classes.button)}>
-              {t('teamRegistration')}
             </Button>
           </Link>
           <Link to={paths.gameResults}>

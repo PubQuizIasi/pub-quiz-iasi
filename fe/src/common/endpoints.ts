@@ -13,7 +13,6 @@ const endpoints = {
   leaveTeam: baseUri + '/teams' + '/leave-team',
   kick: baseUri + '/teams' + '/kick',
   contactInfo: baseUri + '/contact',
-  teamRegistration: baseUri + '/team-registration',
   updateLandmark: baseUri + '/team-registration' + '/landmark',
   resetReservations: baseUri + '/team-registration' + '/reset',
   seasonLeaderboard: baseUri + '/season-leaderboard',

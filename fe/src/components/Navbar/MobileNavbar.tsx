@@ -75,13 +75,6 @@ const Navbar = () => {
             <ListItemButton component={Link} to={paths.root} onClick={handleDrawerToggle}>
               <ListItemText primary={t('about')} />
             </ListItemButton>
-            <ListItemButton
-              component={Link}
-              to={paths.teamRegistration}
-              onClick={handleDrawerToggle}
-            >
-              <ListItemText primary={t('teamRegistration')} />
-            </ListItemButton>
             <ListItemButton component={Link} to={paths.gameResults} onClick={handleDrawerToggle}>
               <ListItemText primary={t('gameResults')} />
             </ListItemButton>
