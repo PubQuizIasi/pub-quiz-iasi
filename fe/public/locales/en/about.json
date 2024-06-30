@@ -17,6 +17,10 @@
     "title": "When?",
     "description": "Every Wednesday, from 18:45 to 21:30. If changes occur, they will be announced in advance."
   },
+  "teamRegistration": {
+    "title": "How do I register?",
+    "description": "Either by a WhatsApp message at <PhoneLink>0770 208 804</PhoneLink>, either by a direct message to <FacebookLink>our Facebook page</FacebookLink>."
+  },
   "prize": {
     "title": "Prizes?",
     "firstPlace": "Voucher worth 150 lei",

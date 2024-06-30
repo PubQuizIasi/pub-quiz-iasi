@@ -1,7 +1,9 @@
+import { ReactNode } from 'react';
+
 export type QuizDescriptionCardProps = {
   img: string;
   title: string;
-  description?: string;
+  description?: string | ReactNode;
   address?: string;
   isPrizeSection?: boolean;
   firstPlace?: string;

@@ -17,6 +17,10 @@
     "title": "Când?",
     "description": "În fiecare miercuri, între orele 18:45 și 21:30. Dacă apar modificări, acestea vor fi comunicate în avans."
   },
+  "teamRegistration": {
+    "title": "Cum mă înscriu?",
+    "description": "Prin mesaj pe WhatsApp la numărul <PhoneLink>0770 208 804</PhoneLink> sau prin mesaj privat către <FacebookLink>pagina de Facebook</FacebookLink>."
+  },
   "prize": {
     "title": "Premii?",
     "firstPlace": "Voucher în valoare de 150 lei",

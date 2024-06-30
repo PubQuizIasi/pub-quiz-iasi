@@ -8,6 +8,7 @@ export { default as participationFee } from './participationFee.jpg';
 export { default as prizes } from './prizes.jpg';
 export { default as clock } from './clock.jpg';
 export { default as play } from './play.jpg';
+export { default as teamRegistration } from './teamRegistration.jpg';
 
 export { default as number1 } from './number1.png';
 export { default as number2 } from './number2.png';
