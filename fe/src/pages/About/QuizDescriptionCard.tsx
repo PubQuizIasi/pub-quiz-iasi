@@ -40,9 +40,6 @@ const useStyles = makeStyles()((theme: Theme) => ({
     [theme.breakpoints.down(1300)]: {
       marginBottom: '40px',
     },
-    [theme.breakpoints.down(1100)]: {
-      marginBottom: '70px',
-    },
   },
   iconContainer: {
     display: 'flex',
