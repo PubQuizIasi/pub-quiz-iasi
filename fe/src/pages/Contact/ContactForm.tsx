@@ -32,6 +32,7 @@ const ContactForm = () => {
   const message = useAppSelector(selectMessage);
   const { t } = useTranslation('contact', { keyPrefix: 'form' });
   const { classes } = useStyles();
+  const buttonIsDisabled = !name || !email || !message;
 
   const handleSubmit = () => {
     dispatch(contactTrigger({ name, email, message }));
@@ -66,6 +67,7 @@ const ContactForm = () => {
         onChange={(e) => dispatch(updateMessage(e.target.value))}
       />
       <Button
+        disabled={buttonIsDisabled}
         className={classes.submitButton}
         variant="contained"
         loading={loading}
